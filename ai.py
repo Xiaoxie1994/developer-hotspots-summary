@@ -12,7 +12,7 @@ def summarize_content(key, url, role, content):
             model = "moonshot-v1-32k",
             messages = [
                 {"role": "system", "content": role},
-                {"role": "user", "content": "请协助我对博客内容进行总结，150字以内，内容为：" + content}
+                {"role": "user", "content": "请协助我对博客内容进行总结，100字以内，博客内容为：" + content}
             ],
             temperature = 0.3
         )
