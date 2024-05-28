@@ -8,7 +8,8 @@ def summarize_content(key, url, role, content):
             base_url = url,
         )
         completion = client.chat.completions.create(
-            model = "moonshot-v1-8k",
+            # 如果传入的文本太大可以调整模型
+            model = "moonshot-v1-32k",
             messages = [
                 {"role": "system", "content": role},
                 {"role": "user", "content": "请协助我对博客内容进行总结，150字以内，内容为：" + content}

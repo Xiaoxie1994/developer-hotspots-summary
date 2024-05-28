@@ -32,9 +32,9 @@ for type in hotTypes:
                     # 调用ai对文章内容总结，注意控制调用频率
                     summary = ai.summarize_content(aiKey, aiUrl, aiRole, content)
                     print(summary)
-                    time.sleep(1)
                 else:
-                    print(f"【LOG】获取文章{title}内容时发生错误。")
+                    print(f"【LOG】获取文章{title}内容时发生错误。")  
+                time.sleep(20)  # 免费版为每分钟3次
             result[type['name']].append({
                 'title': title,
                 'url': contentUrl,
