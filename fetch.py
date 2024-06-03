@@ -1,4 +1,4 @@
-import requests
+import requests, feedparser
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
@@ -6,6 +6,44 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from bs4 import BeautifulSoup
+
+# 使用聚合api获取热门文章列表
+def fetch_list_by_api(config):
+    result = {}
+    baseurl = config['url']
+    key = config['key']
+    hotTypes = config['types']
+    for type in hotTypes:
+        url = baseurl + type['url']
+        hotListResult = fetch_hot_list_content(url, key)
+        if hotListResult:
+            print(hotListResult)
+            result[type['name']] = []
+            # 每个榜单保留配置num篇文章
+            for item in hotListResult['data']['items'][:type['num']]:
+                result[type['name']].append({
+                    'title': item['title'],
+                    'url': item['url'],
+                    'summary': item['description']
+                })
+        else:
+            print(f"【LOG】请求热榜{type['name']}失败或解析 JSON 数据时发生错误。")
+            continue
+    return result
+
+# 使用RSS获取热门文章列表
+def fetch_list_by_rss(config):
+    result = {}
+    hotTypes = config['types']
+    for type in hotTypes:
+        hotListResult = parse_rss_feed(type['url'], type['num'])
+        if hotListResult:
+            print(hotListResult)
+            result[type['name']] = hotListResult
+        else:
+            print(f"【LOG】请求热榜{type['name']}失败或解析 RSS 数据时发生错误。")
+            continue
+    return result
 
 def fetch_hot_list_content(url, key):
     print(f"【LOG】fetch_hot_list_content: {url}")
@@ -43,7 +81,32 @@ def fetch_article_content(url):
 
         # 解析页面内容
         soup = BeautifulSoup(page_content, 'html.parser')
-        return soup.get_text()
+        text = soup.get_text()
+        cleaned_lines = [line.strip() for line in text.splitlines() if line.strip()]
+        return '\n'.join(cleaned_lines)
     except Exception as e:
         print(f"【LOG】获取文章内容异常: {e}")
+    return None
+
+def parse_rss_feed(rss_url, num):
+    print(f"parse_rss_feed: {rss_url}")
+    try:
+        # 解析 RSS 源
+        feed = feedparser.parse(rss_url)
+
+        # 创建一个列表存储结果
+        result = []
+
+        # 遍历每个条目，提取标题和链接，并添加到结果列表中
+        for entry in feed.entries[:num]:
+            item = {
+                'title': entry.title,
+                'url': entry.link,
+                'summary': entry.description if len(entry.description) <= 200 else None
+            }
+            result.append(item)
+
+        return result
+    except Exception as e:
+        print(f"【LOG】获取热门list异常: {e}")
     return None

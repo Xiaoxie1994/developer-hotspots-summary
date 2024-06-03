@@ -10,14 +10,14 @@
 ## 方案设计 
 ![方案设计](./picture/image.png)
 
-PS：目前项目暂时没有实现“文章重复数据过滤”、“自定义爬虫”和“内容预处理组件”（可以基于LangChain实现）功能，后续会逐步完善。
+PS：目前项目暂时没有实现“重复数据过滤”、“自定义爬虫”和“内容预处理”（可以基于LangChain实现）功能，后续会逐步完善。
 
 ## 依赖三方API
 - [Tophubdata](https://www.tophubdata.com/): 提供热门榜单数据，现成数据不用自己写爬虫（有一定费用开销）；
 - [Moonshot AI](https://platform.moonshot.cn/): 大模型KIMI的API，不支持搜索能力。
 
 ## 使用方式
-- 修改配置文件config.yaml中的key值, 并按照自己需求调整热榜类型
+- 将config-template.yaml重命名为config.yaml，按照诉求修改中配置项（添加开放api的key值, 并按照自己需求调整热榜类型）
 - 运行main.py程序
 ```
 python3 main.py

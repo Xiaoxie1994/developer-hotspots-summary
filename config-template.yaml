@@ -1,0 +1,60 @@
+fetch:
+  # 抓取类型目前支持 topApi/rss
+  type: topApi
+  needSummary: true
+  config:
+    url: https://api.tophubdata.com/nodes/
+    # 在 https://www.tophubdata.com/dashboard 申请key
+    key: 填写你自己的密钥
+    # type定义参考 https://www.tophubdata.com/all-nodes
+    types: 
+      - name: GitHub今日趋势
+        url: rYqoXQ8vOD
+        num: 5
+      - name: CSDN今日头条热点
+        url: n3moBVoN5O
+        num: 5
+      - name: 掘金全站最新
+        url: proPW8meq6
+        num: 5
+      - name: 开源中国最新资讯
+        url: 1Vd5x9av85
+        num: 5
+      - name: InfoQToday
+        url: JndkZkAv3V
+        num: 5
+      - name: 机器之心最热文章
+        url: DOvnNz1vEB
+        num: 5
+  # 使用RSS方式
+  # type: rss
+  # needSummary: true
+  # config: 
+  #   types:
+  #     - name: 肖恩的杂货店
+  #       url: https://www.shawnxie.top/feed.xml
+  #       num: 5
+      # - name: 掘金本周最热
+      #   url: https://rsshub.rssforever.com/juejin/trending/all/weekly
+      #   num: 5
+      # - name: 掘金后端本周最热
+      #   url: https://rsshub.rssforever.com/juejin/trending/backend/weekly
+      #   num: 5
+      # - name: GitHub今日趋势
+      #   url: https://rsshub.rssforever.com/github/trending/daily/any/en
+      #   num: 5
+      # - name: 开源中国-综合资讯
+      #   url: https://rsshub.rssforever.com/oschina/news/industry
+      #   num: 5
+      # - name: InfoQ 推荐
+      #   url: https://plink.anyfeeder.com/infoq/recommend
+      #   num: 5
+      # - name: 美团技术团队
+      #   url: https://tech.meituan.com/feed/
+      #   num: 5
+
+understand:
+  # 大模型类型，目前支持 kimi
+  type: kimi
+  # 在 https://platform.moonshot.cn/console/api-keys 申请key
+  key: 填写你自己的密钥
