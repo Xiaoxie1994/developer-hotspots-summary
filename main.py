@@ -26,10 +26,11 @@ date = time.strftime("%Y-%m-%d", time.localtime())
 needSummary = config['fetch']['needSummary']
 if needSummary:
     ai_type = config['understand']['type']
+    ai_key = config['understand']['key']
     for value in result.values():
         for item in value:
             # 调用ai对文章内容总结
-            summary = understand.summarize_content(type, item['url'])
+            summary = understand.summarize_content(ai_type, item['url'], ai_key)
             print(summary)
             item['summary'] = summary
 
