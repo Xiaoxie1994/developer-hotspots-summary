@@ -39,7 +39,8 @@ if result:
     contents = []
     file_title = date + '热门文章'
     contents.append(md.header(file_title, 1))
-    contents.append(md.blockquote('Power By: [developer-hotspots-summary](https://github.com/Xiaoxie1994/developer-hotspots-summary).'))
+    contents.append(md.blockquote('Power By: [developer-hotspots-summary](https://github.com/Xiaoxie1994/developer-hotspots-summary).    '))
+    contents.append(md.blockquote(f"是否生成AI摘要: {needSummary}"))
     for key, value in result.items():
         contents.append(md.header(key, 2))
         table_title = ['文章']

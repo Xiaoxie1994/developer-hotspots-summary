@@ -20,7 +20,8 @@ def fetch_list_by_api(config):
             print(hotListResult)
             result[type['name']] = []
             # 每个榜单保留配置num篇文章
-            for item in hotListResult['data']['items'][:type['num']]:
+            num = type['num'] if 'num' in type else len(hotListResult['data']['items'])
+            for item in hotListResult['data']['items'][:num]:
                 result[type['name']].append({
                     'title': item['title'],
                     'url': item['url'],
@@ -36,7 +37,7 @@ def fetch_list_by_rss(config):
     result = {}
     hotTypes = config['types']
     for type in hotTypes:
-        hotListResult = parse_rss_feed(type['url'], type['num'])
+        hotListResult = parse_rss_feed(type)
         if hotListResult:
             print(hotListResult)
             result[type['name']] = hotListResult
@@ -88,7 +89,8 @@ def fetch_article_content(url):
         print(f"【LOG】获取文章内容异常: {e}")
     return None
 
-def parse_rss_feed(rss_url, num):
+def parse_rss_feed(type):
+    rss_url = type['url']
     print(f"parse_rss_feed: {rss_url}")
     try:
         # 解析 RSS 源
@@ -96,8 +98,8 @@ def parse_rss_feed(rss_url, num):
 
         # 创建一个列表存储结果
         result = []
-
         # 遍历每个条目，提取标题和链接，并添加到结果列表中
+        num = type['num'] if 'num' in type else len(feed.entries)
         for entry in feed.entries[:num]:
             item = {
                 'title': entry.title,
