@@ -23,11 +23,13 @@ PS：目前项目暂时没有实现“重复数据过滤”、“自定义爬虫
 python3 main.py
 ```
 - 在/result文件下获取生成后文档    
---- 
-历史生成结果查看: 
-- [2024-05-28热门文章](./result/2024-05-28热门文章.md)
-- [2024-06-03热门文章](./result/2024-06-03热门文章.md)
-- [2024-06-07热门文章](./result/2024-06-07热门文章.md)
+
+## 周刊
+目前基于此项目创建了技术周刊，相关内容：
+- 个人博客: [肖恩技术周刊](https://www.shawnxie.top/categories/tf-weekly)
+- Github: [shawn-weekly](https://github.com/Xiaoxie1994/shawn-weekly)
+- 公众号: 肖恩杂谈
+![公众号二维码](./picture/image-1.png)
 
 License
 ---
