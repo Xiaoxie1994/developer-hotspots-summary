@@ -29,7 +29,8 @@ python3 main.py
 - 个人博客: [肖恩技术周刊](https://www.shawnxie.top/categories/tf-weekly)
 - Github: [shawn-weekly](https://github.com/Xiaoxie1994/shawn-weekly)
 - 公众号: 肖恩杂谈
-![公众号二维码](./picture/image-1.png)
+
+<img src="./picture/image-1.png" alt="公众号二维码" width="400">
 
 License
 ---
