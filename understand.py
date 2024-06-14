@@ -4,8 +4,8 @@ import fetch, time, requests, json
 def summarize_content(type, url, key):
     if type == 'kimi':
         return summarize_content_kimi(url, key)
-    elif type == 'cozi':
-        return summarize_content_cozi_bot(url, key)
+    elif type == 'coze':
+        return summarize_content_coze_bot(url, key)
     # 可以扩展更多的ai类型
     # elif type == 'gimini': 
     # elif type == 'openAi':     
@@ -39,8 +39,8 @@ def summarize_content_kimi(url, key):
         print(f"【LOG】使用ai总结文章异常: {e}")
     return None
 
-# 调用cozi bot api生成摘要
-def summarize_content_cozi_bot(url, key):
+# 调用coze bot api生成摘要
+def summarize_content_coze_bot(url, key):
     try:
         headers = {
             'Authorization': f'Bearer {key}',

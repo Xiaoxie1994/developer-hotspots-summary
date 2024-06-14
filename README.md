@@ -38,8 +38,8 @@ fetch:
         num: 5
 # 内容解读配置
 understand:
-  # 大模型类型，目前支持 kimi、cozi
-  type: cozi
+  # 大模型类型，目前支持 kimi、coze
+  type: coze
   # 在 https://www.coze.cn/open 申请key
   key: 填写你自己的密钥
   # type: kimi
