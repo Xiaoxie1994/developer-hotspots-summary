@@ -1,4 +1,4 @@
-import fetch, csv, understand
+import fetch, csv, understand, time
 
 # 抓取热榜数据并暂存
 def fetch_top_hot_list(fetch_type, fetch_config):
@@ -11,7 +11,7 @@ def fetch_top_hot_list(fetch_type, fetch_config):
 
     if None == result : return
     # 将数据暂存到本地
-    filename = "./tmp/output.csv"
+    filename = "./tmp/" + time.strftime("%Y-%m-%d", time.localtime()) + ".csv"
     header = ["类型", "标题", "地址"]
     with open(filename, mode='w', newline='', encoding='utf-8') as file:
         writer = csv.writer(file)
@@ -26,7 +26,7 @@ def fetch_top_hot_list(fetch_type, fetch_config):
 # 解读热榜数据
 def understan_urls(ai_type, ai_key):
     # 读取本地暂存数据
-    filename = "./tmp/output.csv"
+    filename = "./tmp/" + time.strftime("%Y-%m-%d", time.localtime()) + ".csv"
     result = {}
     with open(filename, mode='r', newline='', encoding='utf-8') as file:
         reader = csv.reader(file)

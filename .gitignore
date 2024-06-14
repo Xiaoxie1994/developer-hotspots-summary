@@ -2,4 +2,3 @@ __pycache__/
 .venv/
 result/article/
 config.yaml
-tmp/
