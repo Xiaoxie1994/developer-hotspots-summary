@@ -10,14 +10,42 @@
 ## 方案设计 
 ![方案设计](./picture/image.png)
 
-PS：目前项目暂时没有实现“重复数据过滤”、“自定义爬虫”和“内容预处理”（可以基于LangChain实现）功能，后续会逐步完善。
-
 ## 依赖三方API
 - [Tophubdata](https://www.tophubdata.com/): 提供热门榜单数据，现成数据不用自己写爬虫（有一定费用开销）；
-- [Moonshot AI](https://platform.moonshot.cn/): 大模型KIMI的API，不支持搜索能力。
+- [Coze API](https://www.coze.cn/open): 字节跳动推出的一站式AI Bot开发平台，项目中使用的bot（[网页内容理解](https://www.coze.cn/store/bot/7380236432360751123)）支持搜索能力，你也可以在[Coze](https://www.coze.cn/)上定制化自己的bot（目前免费！！！）；
+- [Moonshot AI](https://platform.moonshot.cn/): 大模型KIMI的API，不支持搜索能力（有一定费用开销）。
 
 ## 使用方式
-- 将config-template.yaml重命名为config.yaml，按照诉求修改中配置项（添加开放api的key值, 并按照自己需求调整热榜类型）
+- 将config-template.yaml重命名为config.yaml，按照诉求修改配置值（添加开放api的key值, 并按照自己需求调整热榜类型）
+``` yaml
+# 设置执行流开关（可以选择是否执行抓取、摘要生成和最终md生成）
+# 执行流程为fetch -> understand -> md
+flow:
+  fetch: true
+  understand: true
+  md: true
+# 抓取配置
+fetch:
+  # 抓取类型目前支持 topApi/rss
+  type: rss
+  config: 
+    types:
+      - name: 肖恩的杂货店
+        url: https://www.shawnxie.top/feed.xml
+        num: 5
+      - name: 掘金本周最热
+        url: https://rsshub.rssforever.com/juejin/trending/all/weekly
+        num: 5
+# 内容解读配置
+understand:
+  # 大模型类型，目前支持 kimi、cozi
+  type: cozi
+  # 在 https://www.coze.cn/open 申请key
+  key: 填写你自己的密钥
+  # type: kimi
+  # # 在 https://platform.moonshot.cn/console/api-keys 申请key
+  # key: 填写你自己的密钥
+```
 - 运行main.py程序
 ```
 python3 main.py
