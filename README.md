@@ -56,7 +56,7 @@ python3 main.py
 目前基于此项目创建了技术周刊，相关内容：
 - 个人博客: [肖恩技术周刊](https://www.shawnxie.top/categories/tf-weekly)
 - Github: [shawn-weekly](https://github.com/Xiaoxie1994/shawn-weekly)
-- 公众号: 肖恩杂谈
+- 公众号: 肖恩聊技术
 
 <img src="./picture/image-1.png" alt="公众号二维码" width="400">
 
